@@ -52,14 +52,26 @@
       filter: brightness(0) invert(1);
       margin-right: 0.5rem;
     }
+/* ------------ RESPONSIVE --------*/
+    .only-desktop {
+      display: block;
+    }
+
+    .only-mobile {
+      display: none;
+    }
 
     @media (max-width: 600px) {
-  .sdi-mobile {
-    white-space: nowrap;
-  }
-}
+      .only-desktop {
+        display: none;
+      }
+      .only-mobile {
+        display: block;
+      }
+    }
   </style>
 </head>
+
 <body>
   <!-- IMG Base64 -->
   <div class="card">
@@ -87,11 +99,18 @@
     <h2 style="color: #d96d29;"> Per le aziende </h2>
     <p> Dati utili per la <b> fatturazione </b> </p>
     <hr>
-    <p>
-      P.IVA / C.FISC. 02200080980 -
-      <span class="sdi-mobile">SDI: X2PH38J</span><br>
-      REA: BS 429762 - 
-      <span class="sdi-mobile">albo artigiani: 138522</span><br>
+    <!-- Versione per DESKTOP -->
+    <p class="only-desktop">
+      P.IVA / C.FISC. 02200080980 - SDI: X2PH38J <br>
+      REA: BS 429762 - albo artigiani: 138522
+    </p>
+
+    <!-- Versione per MOBILE -->
+    <p class="only-mobile">
+      P.IVA / C.FISC. 02200080980 <br>
+      SDI: X2PH38J <br>
+      REA: BS 429762 <br>
+      albo artigiani: 138522
     </p>
     <hr>
     <p> <b>PEC:</b> edildarco@pec.agritel.it </p>
