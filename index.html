@@ -52,6 +52,43 @@
       filter: brightness(0) invert(1);
       margin-right: 0.5rem;
     }
+/* ------------ BOTTONE NUMERI --------*/
+    .contact-dropdown {
+  position: relative;
+  max-width: 300px;
+  margin: 10px auto;
+}
+
+.options {
+  display: flex;
+  flex-direction: column;
+  position: absolute;
+  top: 100%;
+  left: 0;
+  right: 0;
+  background: white;
+  border: 1px solid #ddd;
+  border-radius: 8px;
+  box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+  z-index: 10;
+}
+
+.options a {
+  padding: 0.75rem;
+  text-decoration: none;
+  color: #d96d29;
+  font-weight: 500;
+  border-top: 1px solid #eee;
+}
+
+.options a:first-child {
+  border-top: none;
+}
+
+.hidden {
+  display: none;
+}
+
 /* ------------ RESPONSIVE --------*/
     .only-desktop {
       display: block;
@@ -82,15 +119,36 @@
 
     <p> <span style="font-size:1.2rem;">📍</span> via Petrarca, 3/B 25020 SAN PAOLO (BS) </p>
 
-    <a class="button" href="tel:+393388949399">
-      <span class="emoji-white">📞</span> geom. Rota Gianfranco
-    </a>
-    <a class="button" href="tel:+393392793559">
-      <span class="emoji-white">📞</span> geom. Gelmini Danilo
-    </a>
-    <a class="button" href="mailto:edildarco@alice.it">
-      <span class="emoji-white">✉️</span> edildarco@alice.it
-    </a>
+<div class="contact-dropdown">
+  <a class="button" onclick="toggleOptions('rota-options')">
+    <span class="emoji-white">📞</span> geom. Rota Gianfranco
+  </a>
+  <div id="rota-options" class="options hidden">
+    <a href="tel:+393388949399">📞 CHIAMA</a>
+    <a href="https://wa.me/393388949399?text=Ciao%20geom.%20Rota%20Gianfranco,%20vorrei%20informazioni" target="_blank">💬 WHATSAPP</a>
+  </div>
+</div>
+
+<div class="contact-dropdown">
+  <a class="button" onclick="toggleOptions('gelmini-options')">
+    <span class="emoji-white">📞</span> geom. Gelmini Danilo
+  </a>
+  <div id="gelmini-options" class="options hidden">
+    <a href="tel:+393392793559">📞 CHIAMA</a>
+    <a href="https://wa.me/393392793559?text=Ciao%20geom.%20Gelmini%20Danilo,%20vorrei%20informazioni" target="_blank">💬 WHATSAPP</a>
+  </div>
+</div>
+
+<div class="contact-dropdown">
+  <a class="button" onclick="toggleOptions('email-options')">
+    <span class="emoji-white">✉️</span> edildarco@alice.it
+  </a>
+  <div id="email-options" class="options hidden">
+    <a href="mailto:edildarco@alice.it?subject=Richiesta%20info&body=Ciao%2C%20scrivo%20per%20informazioni.">📧 Outlook </a>
+    <a href="https://mail.google.com/mail/?view=cm&fs=1&to=edildarco@alice.it&su=Richiesta%20info&body=Ciao%20EDILDARCO%2C%20vorrei%20chiedervi..." target="_blank">📨 Gmail Web </a>
+  </div>
+</div>
+
     <a style="color: #d96d29;" download="contatti EDILDARCO.vcf" href="data:text/vcard;base64,QkVHSU46VkNBUkQKVkVSU0lPTjozLjAKRk46RURJTERBUkNPIGNvc3RydXppb25pClRFTDtUWVBFPVdPUkssVk9JQ0U6KzM5MzM4ODk0OTM5OQpURUw7VFlQRT1XT1JLLFZPSUNFOiszOTMzOTI3OTM1NQpFTUFJTDplZGlsZGFyY28AYWxpY2UuaXQKQURSO1RZUEU9V09SSzo7O3ZpYSBQZXRyYXJjYSAzL0I7U0FOX1BBWk87QlM7MjUwMjA7SVQKRU5EOlZDQVJECg=="> 
       <b> Salva </b>
     </a>
@@ -121,7 +179,28 @@
         CAB 11200 </p>
   </div>
   <div class="card only-desktop"> 
+    <h3 style="color:#d96d29"> SALVACI sul tuo cellulare! </h3> 
     <img src="https://api.qrserver.com/v1/create-qr-code/?size=200x200&data=https://edildarco.github.io/contatti-edildarco/" alt="QRCode EDILDARCO" />
+    <p> Scansiona il QR code per avere tutte le informazioni a portata di mano. </p>
   </div>
+
+  <script>
+  function toggleOptions(id) {
+    document.querySelectorAll('.options').forEach(el => {
+      if (el.id !== id) el.classList.add('hidden');
+    });
+
+    const options = document.getElementById(id);
+    options.classList.toggle('hidden');
+  }
+
+  // Chiude il menu se clicchi fuori
+  document.addEventListener('click', function(event) {
+    if (!event.target.closest('.contact-dropdown')) {
+      document.querySelectorAll('.options').forEach(el => el.classList.add('hidden'));
+    }
+  });
+</script>
+
 </body>
 </html>
